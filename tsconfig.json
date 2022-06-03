@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "jaybot's tsconfig",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "commonjs",
+    "target": "ESNEXT",
+    "lib": ["ES6", "ES2020", "ESNext", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "importHelpers": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": false,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": false,
+    "typeRoots": ["./node_modules/@types", "types"],
+    "baseUrl": "src/",
+    "rootDir": "src/",
+    "paths": {
+      "~constants": ["./constants/"],
+      "~config": ["./config/"],
+      "~config/*": ["./config/*"],
+      "~controllers": ["./controllers/"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "src/config/credentials.json",
+    "public/**/*",
+    "node_modules/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "**/*.spec.js"
+  ]
+}

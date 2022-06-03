@@ -1,0 +1,28 @@
+{
+  "name": "jay-bot",
+  "version": "1.0.0",
+  "description": "a kakaotalk chatbot for personal use",
+  "main": "index.ts",
+  "repository": "https://github.com/100kimch/jay-bot.git",
+  "author": "Jaycol Kim <jaycol.kim@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "start": "node -r tsconfig-paths/register -r ts-node dist/index.js"
+  },
+  "dependencies": {
+    "@fastify/redis": "^5.0.0",
+    "fastify": "^3.29.0",
+    "googleapis": "39",
+    "tslib": "^2.4.0",
+    "yarn": "^1.22.18"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.38",
+    "ts-node": "^10.8.0",
+    "tsconfig-paths": "^4.0.0",
+    "tscpaths": "^0.0.9",
+    "typescript": "^4.7.2"
+  }
+}
