@@ -1,0 +1,19 @@
+stateDiagram-v2
+  state "[S1]\n네 말씀하세요.\n(1분 유지)" as S1
+
+  [*] --> S1: [E1] 제이!
+
+  state "일정 수정" as S200
+  state "대화 정리" as S500
+
+  state S200 {
+    state "[M1]\n네 jaycol.kim님 추가했어요." as M1
+    state "[M2]\n네 30분 연장했어요" as M2
+
+    [*] --> M1: [E201] 제이야 jaycol님 추가해줘
+  }
+
+  state S500 {
+    state "[F1]\n헤헿" as F1
+    F1 --> [*]
+  }

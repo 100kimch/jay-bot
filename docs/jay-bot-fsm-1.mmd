@@ -8,10 +8,7 @@ stateDiagram-v2
   S1 --> S31: [E30] 6월 5일\n오후 5시 미팅 잡아줘
   S1 --> S41: [E40] 2시간동안 회의하자
 
-
   state "일정 잡기" as S100
-  state "일정 수정" as S200
-  state "대화 정리" as S500
   state "몇 시간 뒤에 하자 (긴급형)" as S10
   state "해당 날짜에 잡아줘 (날짜 포함)" as S20
   state "몇날 몇시 몇분에 하자 (날짜-시각 포함)" as S30
@@ -20,10 +17,15 @@ stateDiagram-v2
   state S100 {
     state S10 {
       state "[S11]\n알겠어요.\n1시간짜리 회의 링크에요:\nmeet.google.com/....\n\n이 회의에 참여하고자 하는 이메일을 적어주시면\n참가 수락을 해드릴게요, 시간 연장이 필요하시면\n'30분 연장'이라고 말씀해주세요" as S11
+      state "M1으로 이동" as S12
+      state "M2으로 이동" as S13
+      state "F1으로 이동" as S14
       
       [*] --> S11: [E10] 한 시간 뒤에 회의하자 제이야
-      S11 --> S5: [E11] 그래 고마워
-      S11 --> M1: [E12] hello@gmail.com
+      S11 --> S12: [E11] hello@gmail.com
+      S11 --> S13: [E12] 1시간 반만 더해줘
+      S11 --> S14: [E13] 그래 고마워
+      S11 --> [*]
     }
 
     state S20 {
@@ -35,37 +37,34 @@ stateDiagram-v2
       state S30 {
         state "[S32]\n오전 X시인가요, 오후 X시인가요?" as S32
         state "[S33]\n알겠어요. 2022.XX.XX XX:XX ~ XX:XX로\n회의 예약했어요:\nmeet.google.com/....\n\n이 회의에 참여하고자 하는 이메일을 적어주시면\n참가 수락을 해드릴게요, 시간 연장이 필요하시면\n'30분 연장'이라고 말씀해주세요" as S33
+        state "M1으로 이동" as S34
+        state "M2으로 이동" as S35
+        state "F1으로 이동" as S36
         
         [*] --> S31: [E30] 제이야 다음주 2시 10분\n회의 잡아줘
         S31 --> S32: 7시 ~ 12시 중\n오전/오후인지 헷갈리는 경우
         S32 --> S33: [E31] 오후!
         S31 --> S33: 이 외의 경우
-        S33 --> S5: [E32] ㄱㅅ
-        S33 --> M1: [E33] jaycol.kim@gmail.com
-        S33 --> M2: [E34] 30분만 더
+        S33 --> S34: [E33] jaycol.kim@gmail.com
+        S33 --> S35: [E34] 30분만 더
+        S33 --> S36: [E32] ㄱㅅ
+        S33 --> [*]
       }
     }
 
     state S40 {
       state "[S41]\n언제부터 시작할까요" as S41
       state "[S42]\n알겠어요. 2022.XX.XX XX:XX ~ XX:XX로\n회의 예약했에요:\nmeet.google.com/....\n\n이 회의에 참여하고자 하는 이메일을 적어주시면\n참가 수락을 해드릴게요, 시간 연장이 필요하시면\n'30분 연장'이라고 말씀해주세요" as S42
+      state "M1으로 이동" as S43
+      state "M2으로 이동" as S44
+      state "F1으로 이동" as S45
 
-      [*] --> S41: [E40] 1시간만 회의하자 제이
+      [*] --> S41: [E40] 1시간만 미팅하자 제이
       S41 --> S42: [E41] 30분 뒤에
-      S42 --> S5: [E42] 고마오!
-      S42 --> M1: [E43] kim@chi.man
-      S42 --> M2: [E44] 1시간 더
+      S42 --> S43: [E43] kim@chi.man
+      S42 --> S44: [E44] 1시간 더
+      S42 --> S45: [E42] 고마오!
+      S42 --> [*]
     }
   }
-
-  state S200 {
-    state "[M1]\n네 jaycol.kim님 추가했어요." as M1
-    state "[M2]\n네 30분 연장했어요" as M2
-
-    [*] --> M1: [E201] 제이야 jaycol님 추가해줘
-  }
-
-  state S500 {
-    state "[S5]\n헤헿" as S5
-    S5 --> [*]
-  }
+  
