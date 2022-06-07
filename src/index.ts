@@ -1,8 +1,12 @@
-import fastify, { FastifyInstance, FastifyRequest } from 'fastify';
-import { IncomingMessage, Server, ServerResponse } from 'http';
-import { gapi } from '~controllers';
+import fastify, {
+  FastifyInstance,
+  FastifyReply,
+  FastifyRequest
+} from "fastify";
+import { IncomingMessage, Server, ServerResponse } from "http";
+import { gapi } from "~controllers";
 
-import redis from '@fastify/redis';
+import redis from "@fastify/redis";
 
 import type { JWT } from "google-auth-library";
 
@@ -27,7 +31,21 @@ server.post("/hello", (request: FastifyRequest<any>, reply) => {
 });
 
 server.get("/ping", async (request, reply) => {
-  return "pong\n";
+  const response: Chat.Response = {
+    version: "2.0",
+    template: {
+      outputs: [
+        {
+          simpleText: {
+            text: "안녕하세요! 퐁"
+          }
+        }
+      ]
+    }
+  };
+
+  // reply.send(response);
+  return response;
 });
 
 server.get("/test", async (request: FastifyRequest<any>, reply) => {
