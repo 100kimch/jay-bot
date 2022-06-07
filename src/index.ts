@@ -9,12 +9,18 @@ import { gapi } from "~controllers";
 import redis from "@fastify/redis";
 
 import type { JWT } from "google-auth-library";
+console.log("[JAY] Starting server...");
 
 const server: FastifyInstance<Server, IncomingMessage, ServerResponse> =
   fastify({ logger: true });
 let jwt: JWT;
 
-server.register(redis, { host: "127.0.0.1", port: 6379, password: "hello123" });
+// MUST remove sample password
+server.register(redis, {
+  host: "redis",
+  port: 6379,
+  password: "hello123"
+});
 
 server.get("/hello", (request: FastifyRequest<any>, reply) => {
   // console.log("query: ", request.query);
