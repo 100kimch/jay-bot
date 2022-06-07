@@ -31,7 +31,7 @@ sudo docker version
 - Run Redis server inside Docker
 
 ```bash
-docker run --name redis-server -p 6379:6379 --requirepass hello123 -d arm64v8/redis
+docker run --name redis-server -p 6379:6379 -d arm64v8/redis --requirepass hello123
 docker ps
 ```
 
